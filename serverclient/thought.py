@@ -25,7 +25,7 @@ class Thought:
     @staticmethod
     def deserialize(data):
         bytes_format = struct.Struct('LLI')
-        user_id, ts, thought_size =  bytes_format.unpack(data[
+        user_id, ts, thought_size = bytes_format.unpack(data[
                                                          :bytes_format.size])
         timestamp = datetime.fromtimestamp(ts)
         thought_bytes = data[bytes_format.size:bytes_format.size+thought_size]
