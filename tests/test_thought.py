@@ -23,7 +23,7 @@ def test_attributes(t):
 
 
 def test_repr(t):
-    assert repr(t) == f'Thought(user_id={user_id!r}, timestamp' \
+    assert repr(t) == f'Thought(user_id={user_id!r},  timestamp' \
                       f'={datetime!r}, thought={thought!r})'
 
 
