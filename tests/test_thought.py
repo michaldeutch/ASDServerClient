@@ -9,7 +9,8 @@ from serverclient import Thought
 user_id = 1
 datetime = dt.datetime(2000, 1, 1, 12, 0)
 thought = "I'm hungry"
-serialized = b'\x01\x00\x00\x00\x00\x00\x00\x00 \xd0m8\x00\x00\x00\x00\n\x00\x00\x00I\'m hungry'
+serialized = struct.pack('LLI', user_id, int(dt.datetime.timestamp(
+            datetime)), len(thought)) + bytes(thought, 'utf-8')
 
 
 @pytest.fixture
