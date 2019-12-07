@@ -1,14 +1,16 @@
 import datetime as dt
+import struct
 
 import pytest
 
 from serverclient import Thought
 
+
 user_id = 1
 datetime = dt.datetime(2000, 1, 1, 12, 0)
 thought = "I'm hungry"
-serialized = b"\x01\x00\x00\x00\x00\x00\x00\x00 " \
-             b"\xd0m8\x00\x00\x00\x00\n\x00\x00\x00I'm hungry"
+serialized = b'\x01\x00\x00\x00\x00\x00\x00\x00 ' \
+             b'\xd0m8\x00\x00\x00\x00\n\x00\x00\x00I\'m hungry'
 
 
 @pytest.fixture
@@ -23,7 +25,7 @@ def test_attributes(t):
 
 
 def test_repr(t):
-    assert repr(t) == f'Thought(user_id={user_id!r},  timestamp' \
+    assert repr(t) == f'Thought(user_id={user_id!r}, timestamp' \
                       f'={datetime!r}, thought={thought!r})'
 
 
@@ -43,10 +45,7 @@ def test_eq(t):
     assert t4 != t
     t5 = 1
     assert t5 != t
-
-    def f():
-        return None
-    t6 = f
+    t6 = lambda: None
     t6.user_id = user_id
     t6.timestamp = datetime
     t6.thought = thought
